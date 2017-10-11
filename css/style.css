@@ -1,0 +1,23 @@
+.link{
+    position: relative;
+    margin-bottom: 20px;
+    padding: 8px 40px 8px 30px;
+}
+.link span {
+    position: absolute;
+    line-height: 1em;
+    font-size: 10px;
+    right: 10px;
+    top: calc( 50% - 12px);
+    box-sizing: border-box;
+    border: 2px solid #7A9E9F;
+    padding: 5px;
+    border-radius: 50%;
+    color: #f4f3ef;
+    background-color: #7A9E9F;
+}
+.link:hover span {
+    border-color: #f4f3ef;
+    background: #f4f3ef;
+    color: #7A9E9F;
+}
