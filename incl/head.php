@@ -32,9 +32,15 @@ $_page = isset($page) ? $page : 'Restaurant';
 
 
     <!--  Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <!-- <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'> -->
     <link href="assets/css/themify-icons.css" rel="stylesheet">
+
+    <!--   Core JS Files   -->
+    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/bootstrap-notify.js"></script>
 
 </head>
 <body>

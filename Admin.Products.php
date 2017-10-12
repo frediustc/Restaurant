@@ -13,70 +13,36 @@ include 'incl/head.php'; ?>
                         <p class="category">Here is a subtitle for this table</p>
                     </div>
                     <div class="content table-responsive table-full-width">
-                        <form class="" action="index.html" method="post">
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="card card-plain">
-                    <div class="header">
-                        <h4 class="title">Table on Plain Background</h4>
-                        <p class="category">Here is a subtitle for this table</p>
-                    </div>
-                    <div class="content table-responsive table-full-width">
-                        <table class="table table-hover">
+                        <table class="table">
                             <thead>
-                                <th>ID</th>
+                                <th>Prev.</th>
                                 <th>Name</th>
-                                <th>Salary</th>
-                                <th>Country</th>
-                                <th>City</th>
+                                <th>Desc.</th>
+                                <th>Price</th>
+                                <th>Day</th>
+                                <th>Time</th>
+                                <th>Qty</th>
+                                <th>Opt</th>
                             </thead>
                             <tbody>
+                                <?php
+                                $pdct = $db->prepare('SELECT * FROM products ORDER BY name');
+                                $pdct->execute();
+                                while ($p = $pdct->fetch()) { ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Dakota Rice</td>
-                                    <td>$36,738</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
+                                    <td class="img-table"><img src="img/pdct/pdct_<?php echo $p['id'] ?>.jpg" alt="previous"></td>
+                                    <td><?php echo $p['name'] ?></td>
+                                    <td><?php echo $p['description'] ?></td>
+                                    <td><?php echo $p['price'] ?>&#8373; </td>
+                                    <td><?php echo $p['day'] ?></td>
+                                    <td><?php echo $p['period'] ?></td>
+                                    <td><?php echo $p['qty'] ?></td>
+                                    <td>
+                                        <a href="Admin.Products.Edit.php?id=<?php echo $p['id'] ?>" class="btn btn-primary btn-table"><span class="ti-pencil"></span></a>
+                                        <a href="Admin.Products.Delete.php?id=<?php echo $p['id'] ?>" class="btn btn-danger btn-table"><span class="ti-trash"></span></a>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Minerva Hooper</td>
-                                    <td>$23,789</td>
-                                    <td>Curaçao</td>
-                                    <td>Sinaai-Waas</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Sage Rodriguez</td>
-                                    <td>$56,142</td>
-                                    <td>Netherlands</td>
-                                    <td>Baileux</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Philip Chaney</td>
-                                    <td>$38,735</td>
-                                    <td>Korea, South</td>
-                                    <td>Overland Park</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Doris Greene</td>
-                                    <td>$63,542</td>
-                                    <td>Malawi</td>
-                                    <td>Feldkirchen in Kärnten</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Mason Porter</td>
-                                    <td>$78,615</td>
-                                    <td>Chile</td>
-                                    <td>Gloucester</td>
-                                </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>

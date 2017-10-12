@@ -21,3 +21,9 @@
     background: #f4f3ef;
     color: #7A9E9F;
 }
+.img-table{
+    width: 40px;
+}
+.img-table img {
+    width: 100%;
+}
