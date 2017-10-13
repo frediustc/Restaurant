@@ -163,3 +163,6 @@ body .wrapper, body .wrapper .main-panel{
 .bs-login .modal-content, .bs-register .modal-content{
     padding: 20px;
 }
+.card-user .avatar{
+    background-color: white;
+}

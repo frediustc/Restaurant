@@ -32,7 +32,6 @@ if(!isset($_SESSION['id']) && $_page != 'Menu'){
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="assets/css/demo.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
 
 
     <!--  Fonts and icons     -->
@@ -45,13 +44,15 @@ if(!isset($_SESSION['id']) && $_page != 'Menu'){
 	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
     <!--  Notifications Plugin    -->
     <script src="assets/js/bootstrap-notify.js"></script>
+    <link href="css/style.css" rel="stylesheet" />
+
 
 </head>
 <body>
 
 <div class="wrapper">
     <?php if(!isset($_SESSION['id'])){ include 'incl/log.php';
-        
+
     }
     else {
         $user = $db->prepare('SELECT * FROM users WHERE id = ?');

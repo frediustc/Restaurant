@@ -1,6 +1,24 @@
 <?php
 $page = 'Dashboard';
-include 'incl/head.php'; ?>
+include 'incl/head.php';
+
+$c = 0;
+$s = 0;
+$pdct = $db->prepare('
+SELECT  orders.id, orders.qty, products.price
+FROM orders
+INNER JOIN users ON users.id = orders.uid
+INNER JOIN products ON products.id = orders.pid
+WHERE orders.status = "take"
+');
+$pdct->execute();
+while ($o = $pdct->fetch()) {
+    $s += (double)$o['qty'] * (double)$o['price'];
+}
+$nbr = $db->prepare('SELECT (SELECT COUNT(id) FROM users WHERE ut = "Customer") AS u, (SELECT COUNT(id) FROM orders WHERE status = "queue") AS o, (SELECT COUNT(id) FROM products) AS p');
+$nbr->execute();
+$n = $nbr->fetch();
+?>
 
 <div class="content">
     <div class="container-fluid">
@@ -11,20 +29,20 @@ include 'incl/head.php'; ?>
                         <div class="row">
                             <div class="col-xs-5">
                                 <div class="icon-big icon-warning text-center">
-                                    <i class="ti-server"></i>
+                                    <i class="ti-clipboard"></i>
                                 </div>
                             </div>
                             <div class="col-xs-7">
                                 <div class="numbers">
-                                    <p>Capacity</p>
-                                    105GB
+                                    <p>Orders</p>
+                                    <?php echo $n['o'] ?>
                                 </div>
                             </div>
                         </div>
                         <div class="footer">
                             <hr />
                             <div class="stats">
-                                <i class="ti-reload"></i> Updated now
+                                Total Orders
                             </div>
                         </div>
                     </div>
@@ -42,14 +60,14 @@ include 'incl/head.php'; ?>
                             <div class="col-xs-7">
                                 <div class="numbers">
                                     <p>Revenue</p>
-                                    $1,345
+                                    &#8373;<?php echo $s ?>
                                 </div>
                             </div>
                         </div>
                         <div class="footer">
                             <hr />
                             <div class="stats">
-                                <i class="ti-calendar"></i> Last day
+                                Total Revenue
                             </div>
                         </div>
                     </div>
@@ -61,20 +79,20 @@ include 'incl/head.php'; ?>
                         <div class="row">
                             <div class="col-xs-5">
                                 <div class="icon-big icon-danger text-center">
-                                    <i class="ti-pulse"></i>
+                                    <i class="ti-user"></i>
                                 </div>
                             </div>
                             <div class="col-xs-7">
                                 <div class="numbers">
-                                    <p>Errors</p>
-                                    23
+                                    <p>Customers</p>
+                                    <?php echo $n['u'] ?>
                                 </div>
                             </div>
                         </div>
                         <div class="footer">
                             <hr />
                             <div class="stats">
-                                <i class="ti-timer"></i> In the last hour
+                                Total Customers
                             </div>
                         </div>
                     </div>
@@ -86,20 +104,20 @@ include 'incl/head.php'; ?>
                         <div class="row">
                             <div class="col-xs-5">
                                 <div class="icon-big icon-info text-center">
-                                    <i class="ti-twitter-alt"></i>
+                                    <i class="ti-view-list-alt"></i>
                                 </div>
                             </div>
                             <div class="col-xs-7">
                                 <div class="numbers">
-                                    <p>Followers</p>
-                                    +45
+                                    <p>Product</p>
+                                    <?php echo $n['p'] ?>
                                 </div>
                             </div>
                         </div>
                         <div class="footer">
                             <hr />
                             <div class="stats">
-                                <i class="ti-reload"></i> Updated now
+                                Total Product
                             </div>
                         </div>
                     </div>
@@ -111,22 +129,11 @@ include 'incl/head.php'; ?>
             <div class="col-md-12">
                 <div class="card ">
                     <div class="header">
-                        <h4 class="title">2015 Sales</h4>
-                        <p class="category">All products including Taxes</p>
+                        <h4 class="title">Sales</h4>
+                        <p class="category">All products Sales</p>
                     </div>
                     <div class="content">
                         <div id="chartActivity" class="ct-chart"></div>
-
-                        <div class="footer">
-                            <div class="chart-legend">
-                                <i class="fa fa-circle text-info"></i> Tesla Model S
-                                <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                            </div>
-                            <hr>
-                            <div class="stats">
-                                <i class="ti-check"></i> Data information certified
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
