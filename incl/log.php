@@ -10,6 +10,9 @@ if(isset($_POST['login'])){
     $user = $users->fetch();
     if(!empty($user)){
         $_SESSION['id'] = $user['id'];
+        $user = $db->prepare('SELECT * FROM users WHERE id = ?');
+        $user->execute(array($_SESSION['id']));
+        $u = $user->fetch();
         ?>
         <script type="text/javascript">
         $.notify({
@@ -145,6 +148,9 @@ if(isset($_POST['register'])){
         $stdadd = $db->prepare('INSERT INTO users (fn, em, nb, ps, ut, reg) VALUES(?,?,?,?,"Customer",NOW())');
         if($stdadd->execute(array(ucwords($fn), $em, $nb, sha1($ps)))){
             $_SESSION['id'] = $db->lastInsertId();
+            $user = $db->prepare('SELECT * FROM users WHERE id = ?');
+            $user->execute(array($_SESSION['id']));
+            $u = $user->fetch();
             ?>
 
             $.notify({

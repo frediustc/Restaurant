@@ -32,20 +32,25 @@ function articles($day = 'Mon', $period = 'Morning'){
                             <p><strong><?php echo $p['name'] ?></strong></p>
                             <p><span class="op-5"><?php echo $p['description'] ?></span></p>
                             <p>Price: <span class="h3 price"><?php echo $p['price'] ?></span>&#8373;</p>
-                            <form class="" action="Shop.Menu.php" method="post" class="orderForm">
-                                <input type="hidden" name="pid" value="<?php echo $p['id'] ?>">
-                                <div class="row">
-                                    <div class="col-xs-6">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="total"><?php echo $p['price'] ?></span> &#8373;</span>
-                                            <input type="number" name="qty" min="1" value="1" max="<?php echo $m ?>" required class="form-control qty">
+                            <?php if (isset($_SESSION['id'])): ?>
+                                <form class="" action="Shop.Menu.php" method="post" class="orderForm">
+                                    <input type="hidden" name="pid" value="<?php echo $p['id'] ?>">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="total"><?php echo $p['price'] ?></span> &#8373;</span>
+                                                <input type="number" name="qty" min="1" value="1" max="<?php echo $m ?>" required class="form-control qty">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <button type="submit" name="order" class="btn btn-primary btn-block">Order Now</button>
                                         </div>
                                     </div>
-                                    <div class="col-xs-6">
-                                        <button type="submit" name="order" class="btn btn-primary btn-block">Order Now</button>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                            <?php endif; ?>
+                            <?php if (!isset($_SESSION['id'])): ?>
+                                <p><mark>Login to order</mark></p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

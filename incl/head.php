@@ -50,7 +50,9 @@ if(!isset($_SESSION['id']) && $_page != 'Menu'){
 <body>
 
 <div class="wrapper">
-    <?php if(!isset($_SESSION['id'])){ include 'incl/log.php'; }
+    <?php if(!isset($_SESSION['id'])){ include 'incl/log.php';
+        
+    }
     else {
         $user = $db->prepare('SELECT * FROM users WHERE id = ?');
         $user->execute(array($_SESSION['id']));

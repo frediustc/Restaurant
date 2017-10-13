@@ -2,15 +2,20 @@
 if (isset($_POST['order'])) {
     $pid = $_POST['pid'];
     $qty = $_POST['qty'];
-    $id = 2;
+    $id = $u['id'];
     $ok = true;
 
     if($ok){
         $or = $db->prepare('INSERT INTO orders(pid, uid, qty, made) VALUES(?,?,?,NOW())');
         if($or->execute(array($pid, $id, $qty))){
-            $id = $db->lastInsertId();
-            $now = date("Y-m-d");
-            // $it = $db->prepare('SELECT ')
+            $last = $db->prepare('
+                SELECT orders.id, users.fn, orders.made, products.name, orders.qty, products.price
+                FROM orders
+                INNER JOIN users ON users.id = orders.uid
+                INNER JOIN products ON products.id = orders.pid
+                WHERE orders.uid = ? ORDER BY orders.id DESC LIMIT 1');
+            $last->execute(array($u['id']));
+            $data = $last->fetch();
             ?>
             <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
               <div class="modal-dialog" role="document">
@@ -25,9 +30,9 @@ if (isset($_POST['order'])) {
                               <center>
                                   <img src="img/logo.jpg" alt="logo">
                                    <h3>My Resto</h3>
-                                  <p>Receipt no: <?php echo $id ?></p>
-                                  <p>Date: <?php echo $now ?></p>
-                                  <p>Client: Fredius Tout Court</p>
+                                  <p>Receipt no: <?php echo $data['id'] ?></p>
+                                  <p>Date: <?php echo $data['made'] ?></p>
+                                  <p>Client: <?php echo $data['fn'] ?></p>
                                   <p>Payment type: Cash</p>
                               </center>
                           </div>
@@ -43,16 +48,16 @@ if (isset($_POST['order'])) {
                                   </thead>
                                   <tbody>
                                     <tr>
-                                      <td>x <?php echo $qty ?></td>
-                                      <td>Otto</td>
-                                      <td>@mdo</td>
-                                      <td>@mdo</td>
+                                      <td>x <?php echo $data['qty'] ?></td>
+                                      <td><?php echo $data['name'] ?></td>
+                                      <td><?php echo $data['price'] ?></td>
+                                      <td><?php echo (double)$data['qty'] * (double)$data['price'] ?></td>
                                     </tr>
                                     <tr>
                                       <td> </td>
                                       <td> </td>
                                       <td> </td>
-                                      <td>@mdo</td>
+                                      <td><?php echo (double)$data['qty'] * (double)$data['price'] ?></td>
                                     </tr>
                                   </tbody>
                                 </table>
