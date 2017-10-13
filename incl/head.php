@@ -1,6 +1,10 @@
 <?php
+session_start();
 include 'incl/db.php';
 $_page = isset($page) ? $page : 'Restaurant';
+if(!isset($_SESSION['id']) && $_page != 'Menu'){
+    header('location: Shop.Menu.php');
+}
  ?>
 <!doctype html>
 <html lang="en">
@@ -46,5 +50,12 @@ $_page = isset($page) ? $page : 'Restaurant';
 <body>
 
 <div class="wrapper">
+    <?php if(!isset($_SESSION['id'])){ include 'incl/log.php'; }
+    else {
+        $user = $db->prepare('SELECT * FROM users WHERE id = ?');
+        $user->execute(array($_SESSION['id']));
+        $u = $user->fetch();
+    }
+    ?>
     <?php include 'incl/aside.php' ?>
     <?php include 'incl/header.php' ?>

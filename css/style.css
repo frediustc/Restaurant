@@ -27,3 +27,139 @@
 .img-table img {
     width: 100%;
 }
+.nav-tabs{
+    border: none;
+}
+.nav.nav-tabs>li>a, .nav.nav-tabs>li>a:hover, .nav.nav-tabs>li>a:focus, .nav.nav-tabs>li.active>a {
+    border: none;
+    border-radius: 0;
+    margin-right: 5px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+
+}
+.nav.nav-tabs>li.active>a{
+    background: #FF9F99;
+    color: #FAFAFA;
+}
+.tab-content{
+    padding-top: 30px;
+}
+.card {
+    position: relative;
+}
+.card-img{
+    text-align: center;
+    overflow-x: hidden;
+    vertical-align: middle;
+}
+.card-img img{
+    height: 100%;
+    max-height: 140px;
+    vertical-align: middle;
+}
+.pdct {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+.card-body{
+    border-left: 1px solid rgba(0,0,0,0.1);
+    height: 150px;
+}
+.card-float{
+    position: absolute;
+    right: 30px;
+    padding: 10px;
+    font-size: 15px;
+    line-height: 1em;
+    width: 30px;
+    text-align: center;
+    top: -20px;
+    color: #FFF;
+    background-color: #61ED76;
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+    box-sizing: none;
+}
+.card-float:before{
+    content: '';
+    height: auto;
+    z-index: 1;
+    position: absolute;
+    left: 1px;
+    bottom: -11px;
+    border-bottom: 10px solid transparent;
+    border-top: 0 solid transparent;
+    border-left: 15px solid rgba(0,0,0,0.2);
+    border-right: 15px solid rgba(0,0,0,0.2);
+}
+.card-float:after{
+    content: '';
+    z-index: 2;
+    height: auto;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    border-bottom: 10px solid transparent;
+    border-top: 0 solid transparent;
+    border-left: 15px solid #61ED76;
+    border-right: 15px solid #61ED76;
+}
+.pdct .form-control{
+    border: none;
+    background-color: #eee;
+    padding: 0px 10px;
+    border-radius: 0 30px 30px 0;
+    color: #888;
+
+}
+.pdct .input-group-addon{
+    padding: 6px 10px;
+    border-radius: 30px 0 0 30px;
+    background-color: #557FFF;
+    color: white;
+}
+.tt{
+    margin: 0;
+    margin-bottom: 20px;
+    opacity: 0.7;
+    font-weight: 100;
+    position: relative;
+    text-align: center;
+}
+.tt span{
+    background-color: #f4f3ef;
+    padding: 10px 15px;
+    display: inline-block;
+    position: relative;
+    z-index: 100;
+}
+.tt:before{
+    content: '';
+    height: 1px;
+    background-color: rgba(0,0,0,0.2);
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top:50%;
+}
+#myModal .modal-content{
+    width: 360px;
+    margin: auto;
+}
+#receipt {
+    width: 320px;
+    margin: auto;
+}
+#receipt img {
+    width: 30%;
+}
+body .wrapper, body .wrapper .main-panel{
+    position: inherit;
+}
+.bs-login .modal-dialog, .bs-register .modal-dialog{
+    width: 350px;
+}
+.bs-login .modal-content, .bs-register .modal-content{
+    padding: 20px;
+}

@@ -9,8 +9,7 @@ include 'incl/head.php'; ?>
                 <p><a href="Admin.Products.Add.php" class="btn btn-primary link"><span class="ti-plus"></span>Add Product</a></p>
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Striped Table</h4>
-                        <p class="category">Here is a subtitle for this table</p>
+                        <h4 class="title">Product List</h4>
                     </div>
                     <div class="content table-responsive table-full-width">
                         <table class="table">

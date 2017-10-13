@@ -33,6 +33,12 @@
                     <p>Dashboard</p>
                 </a>
             </li>
+            <li <?php echo $_page == 'Menu' ? 'class="active"' : ''; ?>>
+                <a href="Shop.Menu.php">
+                    <i class="ti-map"></i>
+                    <p>Menu</p>
+                </a>
+            </li>
             <li <?php echo $_page == 'Orders' ? 'class="active"' : ''; ?>>
                 <a href="Admin.Orders.php">
                     <i class="ti-clipboard"></i>
