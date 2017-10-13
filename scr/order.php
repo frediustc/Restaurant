@@ -44,8 +44,8 @@ if (isset($_POST['order'])) {
                           <div id="receipt">
                               <div class="text-center">
                                   <center>
-                                      <img src="img/logo.jpg" alt="logo">
-                                       <h3>My Resto</h3>
+                                      <img src="img/logo.png" alt="logo">
+                                       <h3>Ramsys Cafe</h3>
                                       <p>Receipt no: <?php echo $data['id'] ?></p>
                                       <p>Date: <?php echo $data['made'] ?></p>
                                       <p>Client: <?php echo $data['fn'] ?></p>

@@ -31,7 +31,7 @@
                     <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="ti-new-window"></i>
-                                <p>Connexion</p>
+                                <p>Connection</p>
                                 <b class="caret"></b>
                           </a>
                           <ul class="dropdown-menu">
