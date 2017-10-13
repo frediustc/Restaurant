@@ -130,7 +130,7 @@ $n = $nbr->fetch();
                 <div class="card ">
                     <div class="header">
                         <h4 class="title">Sales</h4>
-                        <p class="category">All products Sales</p>
+                        <p class="category">All products Sales (Daily bases)</p>
                     </div>
                     <div class="content">
                         <div id="saleChart" class="ct-chart"></div>

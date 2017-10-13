@@ -80,38 +80,12 @@
             <?php }
 
             ?>
-            console.log(valDate);
-            var data = {
+            new Chartist.Bar('#saleChart', {
               labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-              series: [
-                [542, 543, 520, 680, 653, 753, 326]
-              ]
-            };
-
-            var options = {
-                seriesBarDistance: 10,
-                axisX: {
-                    showGrid: false
-                },
-                showArea: true,
-                showPoint: false,
-                fullWidth: true,
-                height: "245px"
-            };
-
-            var responsiveOptions = [
-              ['screen and (max-width: 640px)', {
-                seriesBarDistance: 5,
-                axisX: {
-                  labelInterpolationFnc: function (value) {
-                    return value[0];
-                  }
-                }
-              }]
-            ];
-
-            Chartist.Line('#saleChart', data, options, responsiveOptions);
-
+              series: [valDate.Mon, valDate.Tue, valDate.Wed, valDate.Thu, valDate.Fri, valDate.Sat, valDate.Sun]
+            }, {
+              distributeSeries: true
+            });
     	});
 	</script>
 </body>

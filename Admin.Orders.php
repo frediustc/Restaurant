@@ -7,7 +7,15 @@ include 'incl/head.php'; ?>
         <div class="row">
             <div class="col-md-12">
                 <?php if ($u['ut'] == 'Administrator'): ?>
-                    <p><a href="Admin.Products.Add.php" class="btn btn-primary link"><span class="ti-plus"></span>Add Product</a></p>
+                    <p>
+                        <a href="Admin.Products.Add.php" class="btn btn-primary link"><span class="ti-plus"></span>Add Product</a>
+                        <form class="search" action="index.html" method="post">
+                            <div class="form-group">
+                                <input type="text" name="" value="">
+                            </div>
+                        </form>
+                    </p>
+
                 <?php endif; ?>
                 <div class="card">
                     <div class="header">
@@ -17,7 +25,7 @@ include 'incl/head.php'; ?>
                         <?php if ($u['ut'] == 'Administrator'): ?>
                         <table class="table">
                             <thead>
-                                <th>Prev.</th>
+                                <th>ID.</th>
                                 <th>Name</th>
                                 <th>Cust.</th>
                                 <th>Phone</th>
@@ -35,12 +43,12 @@ include 'incl/head.php'; ?>
                                 FROM orders
                                 INNER JOIN users ON users.id = orders.uid
                                 INNER JOIN products ON products.id = orders.pid
-                                ORDER BY status 
+                                ORDER BY status
                                 ');
                                 $pdct->execute();
                                 while ($p = $pdct->fetch()) { ?>
                                 <tr>
-                                    <td class="img-table"><img src="img/pdct/pdct_<?php echo $p['pid'] ?>.jpg" alt="previous"></td>
+                                    <td scope="row"><?php echo $p['id'] ?></td>
                                     <td><?php echo $p['name'] ?></td>
                                     <td><?php echo $p['fn'] ?></td>
                                     <td><?php echo $p['nb'] ?></td>
