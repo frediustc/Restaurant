@@ -133,7 +133,7 @@ $n = $nbr->fetch();
                         <p class="category">All products Sales</p>
                     </div>
                     <div class="content">
-                        <div id="chartActivity" class="ct-chart"></div>
+                        <div id="saleChart" class="ct-chart"></div>
                     </div>
                 </div>
             </div>
