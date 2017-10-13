@@ -15,12 +15,14 @@
 
         <ul class="nav">
 
+            <?php if (isset($_SESSION['id'])): ?>
             <li <?php echo $_page == 'Account' ? 'class="active"' : ''; ?>>
                 <a href="Admin.Account.php">
                     <i class="ti-user"></i>
                     <p>Account</p>
                 </a>
             </li>
+            <?php if ($u['ut'] == 'Administrator'): ?>
             <li <?php echo $_page == 'Customers' ? 'class="active"' : ''; ?>>
                 <a href="Admin.Customers.php">
                     <i class="ti-world"></i>
@@ -33,24 +35,30 @@
                     <p>Dashboard</p>
                 </a>
             </li>
+            <?php endif; ?>
+            <?php endif; ?>
             <li <?php echo $_page == 'Menu' ? 'class="active"' : ''; ?>>
                 <a href="Shop.Menu.php">
                     <i class="ti-map"></i>
                     <p>Menu</p>
                 </a>
             </li>
+            <?php if (isset($_SESSION['id'])): ?>
             <li <?php echo $_page == 'Orders' ? 'class="active"' : ''; ?>>
                 <a href="Admin.Orders.php">
                     <i class="ti-clipboard"></i>
                     <p>Orders</p>
                 </a>
             </li>
+            <?php if ($u['ut'] == 'Administrator'): ?>
             <li <?php echo $_page == 'Products' ? 'class="active"' : ''; ?>>
                 <a href="Admin.products.php">
                     <i class="ti-view-list-alt"></i>
                     <p>Products</p>
                 </a>
             </li>
+            <?php endif; ?>
+            <?php endif; ?>
             <!-- <li>
                 <a href="typography.html">
                     <i class="ti-text"></i>

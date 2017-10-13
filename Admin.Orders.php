@@ -6,128 +6,98 @@ include 'incl/head.php'; ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
+                <?php if ($u['ut'] == 'Administrator'): ?>
+                    <p><a href="Admin.Products.Add.php" class="btn btn-primary link"><span class="ti-plus"></span>Add Product</a></p>
+                <?php endif; ?>
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Striped Table</h4>
-                        <p class="category">Here is a subtitle for this table</p>
+                        <h4 class="title">Orders List</h4>
                     </div>
                     <div class="content table-responsive table-full-width">
-                        <table class="table table-striped">
+                        <?php if ($u['ut'] == 'Administrator'): ?>
+                        <table class="table">
                             <thead>
-                                <th>ID</th>
+                                <th>Prev.</th>
                                 <th>Name</th>
-                                <th>Salary</th>
-                                <th>Country</th>
-                                <th>City</th>
+                                <th>Cust.</th>
+                                <th>Phone</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Opt</th>
                             </thead>
                             <tbody>
+                                <?php
+                                $pdct = $db->prepare('
+                                SELECT orders.pid, orders.id, users.fn, orders.made, users.nb, products.name, orders.qty, products.price, orders.status
+                                FROM orders
+                                INNER JOIN users ON users.id = orders.uid
+                                INNER JOIN products ON products.id = orders.pid
+                                ORDER BY status 
+                                ');
+                                $pdct->execute();
+                                while ($p = $pdct->fetch()) { ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Dakota Rice</td>
-                                    <td>$36,738</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
+                                    <td class="img-table"><img src="img/pdct/pdct_<?php echo $p['pid'] ?>.jpg" alt="previous"></td>
+                                    <td><?php echo $p['name'] ?></td>
+                                    <td><?php echo $p['fn'] ?></td>
+                                    <td><?php echo $p['nb'] ?></td>
+                                    <td><?php echo $p['price'] ?>&#8373; </td>
+                                    <td>x <?php echo $p['qty'] ?></td>
+                                    <td><?php echo (double)$p['qty'] * (double)$p['price'] ?>&#8373; </td>
+                                    <td><?php echo $p['made'] ?></td>
+                                    <td><?php echo $p['status'] ?></td>
+                                    <td>
+                                        <?php if ($p['status'] == 'queue'): ?>
+                                            <a href="Admin.Orders.Validate.php?id=<?php echo $p['id'] ?>" class="btn btn-success btn-table"><span class="ti-check"></span></a>
+                                        <?php endif; ?>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Minerva Hooper</td>
-                                    <td>$23,789</td>
-                                    <td>Curaçao</td>
-                                    <td>Sinaai-Waas</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Sage Rodriguez</td>
-                                    <td>$56,142</td>
-                                    <td>Netherlands</td>
-                                    <td>Baileux</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Philip Chaney</td>
-                                    <td>$38,735</td>
-                                    <td>Korea, South</td>
-                                    <td>Overland Park</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Doris Greene</td>
-                                    <td>$63,542</td>
-                                    <td>Malawi</td>
-                                    <td>Feldkirchen in Kärnten</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Mason Porter</td>
-                                    <td>$78,615</td>
-                                    <td>Chile</td>
-                                    <td>Gloucester</td>
-                                </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="card card-plain">
-                    <div class="header">
-                        <h4 class="title">Table on Plain Background</h4>
-                        <p class="category">Here is a subtitle for this table</p>
-                    </div>
-                    <div class="content table-responsive table-full-width">
-                        <table class="table table-hover">
+                        <?php endif; ?>
+
+                        <?php if ($u['ut'] == 'Customer'): ?>
+                        <table class="table">
                             <thead>
-                                <th>ID</th>
+                                <th>Prev.</th>
                                 <th>Name</th>
-                                <th>Salary</th>
-                                <th>Country</th>
-                                <th>City</th>
+                                <th>Desc.</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                                <th>Date</th>
+                                <th>Status</th>
                             </thead>
                             <tbody>
+                                <?php
+                                $pdct = $db->prepare('
+                                SELECT orders.pid, orders.id, orders.made, products.name, products.description, orders.qty, products.price, orders.status
+                                FROM orders
+                                INNER JOIN users ON users.id = orders.uid
+                                INNER JOIN products ON products.id = orders.pid
+                                WHERE orders.uid = ?
+                                ORDER BY orders.id DESC
+                                ');
+                                $pdct->execute(array($_SESSION['id']));
+                                while ($p = $pdct->fetch()) { ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Dakota Rice</td>
-                                    <td>$36,738</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
+                                    <td class="img-table"><img src="img/pdct/pdct_<?php echo $p['pid'] ?>.jpg" alt="previous"></td>
+                                    <td><?php echo $p['name'] ?></td>
+                                    <td><?php echo $p['description'] ?></td>
+                                    <td><?php echo $p['price'] ?>&#8373; </td>
+                                    <td>x <?php echo $p['qty'] ?></td>
+                                    <td><?php echo (double)$p['qty'] * (double)$p['price'] ?>&#8373; </td>
+                                    <td><?php echo $p['made'] ?></td>
+                                    <td><?php echo $p['status'] ?></td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Minerva Hooper</td>
-                                    <td>$23,789</td>
-                                    <td>Curaçao</td>
-                                    <td>Sinaai-Waas</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Sage Rodriguez</td>
-                                    <td>$56,142</td>
-                                    <td>Netherlands</td>
-                                    <td>Baileux</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Philip Chaney</td>
-                                    <td>$38,735</td>
-                                    <td>Korea, South</td>
-                                    <td>Overland Park</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Doris Greene</td>
-                                    <td>$63,542</td>
-                                    <td>Malawi</td>
-                                    <td>Feldkirchen in Kärnten</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Mason Porter</td>
-                                    <td>$78,615</td>
-                                    <td>Chile</td>
-                                    <td>Gloucester</td>
-                                </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

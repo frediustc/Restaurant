@@ -36,7 +36,6 @@ if(isset($_POST['login'])){
         </script>
 
        <?php
-        header('location: ../../Shop/Login.php?error=error');
     }
 }
 
