@@ -166,3 +166,25 @@ body .wrapper, body .wrapper .main-panel{
 .card-user .avatar{
     background-color: white;
 }
+.orderTop{
+    position: relative;
+}
+.search{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 2px 0;
+    width: 400px;
+}
+.search input{
+    border: 2px solid #7A9E9F;
+    padding: 5px 15px;
+    border-radius: 30px;
+    background: transparent;
+    width: 400px;
+}
+#basic-addon1{
+    border-radius: 0 30px 30px 0;
+    color: white;
+    background-color: #7A9E9F;
+}
